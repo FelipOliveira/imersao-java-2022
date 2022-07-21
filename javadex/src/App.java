@@ -3,8 +3,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -20,17 +18,13 @@ public class App {
         var body = response.body();
 
         // extrair apenas as informações necessárias(nome, id, tipo, icone)
-        List<Map<String, String>> pokeList = JsonParser.parse(body);
+        // List<Map<String, String>> pokeList = JsonParser.parse(body);
+
+        PokeTest pokeList = JsonParser.simpleParse(body);
 
         // exibir e manipular os dados
-        for (Map<String, String> pokemon : pokeList) {
-            System.out.print("nome: " + pokemon.get("name"));
-            space();
-            System.out.println("url: " + pokemon.get("url"));
-        }
-    }
 
-    public static void space() {
-        System.out.print(" - ");
+        for (int i = 0; i < pokeList.getResults().size(); i++)
+            System.out.println(pokeList.getResults().get(i).getName());
     }
 }
