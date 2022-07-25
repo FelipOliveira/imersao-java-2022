@@ -1,4 +1,6 @@
-public class Utils {
+package utils;
+
+public class Converter {
     private static final double KG_CONVERSOR = 0.45359237;
     private static final double FT_CONVERSOR = 30.48;
 
